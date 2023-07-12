@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Todo } from "../constant";
 import { addTodo } from "../api";
 
-export const TodoInput = () => {
+interface TodoInputProp {
+  setState: (a: Todo) => void;
+}
+
+export const TodoInput = ({ setState }: TodoInputProp) => {
   const [title, setTitle] = useState<string>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +18,10 @@ export const TodoInput = () => {
       title,
       status: false,
     };
-    addTodo(newTodo);
+    addTodo(newTodo).then((res) => {
+      console.log(res);
+      setState(res);
+    });
     // console.log(newTodo);
 
     setTitle("");

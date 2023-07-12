@@ -6,6 +6,12 @@ import { TodoItem } from "./TodoItem";
 
 export const TodoApp = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  // const [state, setState] = useState<number>(0);
+
+  const handleReRender = (newTodo: Todo) => {
+    // setState((prev) => prev + 1);
+    setTodos((prev) => [...prev, newTodo]);
+  };
 
   useEffect(() => {
     getTodos().then((res) => {
@@ -15,7 +21,7 @@ export const TodoApp = () => {
   });
   return (
     <div>
-      <TodoInput />
+      <TodoInput setState={handleReRender} />
       {todos.map((el) => {
         return <TodoItem key={el.id} {...el} />;
       })}

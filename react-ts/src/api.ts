@@ -7,6 +7,7 @@ import { Todo } from "./constant";
 
 export const addTodo = async (newTodo: Todo) => {
   let res = await axios.post("http://localhost:8080/todos", newTodo);
+  return res.data;
 };
 
 export const getTodos = async () => {
