@@ -23,7 +23,7 @@ export const TodoApp = () => {
     <div>
       <TodoInput setState={handleReRender} />
       {todos.map((el) => {
-        return <TodoItem key={el.id} {...el} />;
+        return <TodoItem key={el.id} {...el} handleReRender={handleReRender} />;
       })}
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Todo } from "../constant";
+import { NewTodo, Todo } from "../constant";
 import { addTodo } from "../api";
 
 interface TodoInputProp {
@@ -14,7 +14,7 @@ export const TodoInput = ({ setState }: TodoInputProp) => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let newTodo: Todo = {
+    let newTodo: NewTodo = {
       title,
       status: false,
     };
