@@ -27,6 +27,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Button } from "../components/Button";
 import App from "../App";
+
 describe("Test the button component", () => {
   //1. Button is getting rendered or not
   it("Button should be rendered in the DOM", () => {
@@ -41,7 +42,7 @@ describe("Test the button component", () => {
     expect(button).toHaveTextContent("Click");
   });
   it("Should throw error if props are not passed", () => {
-    jest.spyon(console, "error");
+    jest.spyOn(console, "error");
     render(
       <Button color={0} size={() => {}}>
         Click
@@ -58,7 +59,7 @@ describe("Test the button component", () => {
     const button = screen.getByTestId("testing-button");
 
     fireEvent.click(button);
-    except(mockFunc).toBeCalled();
+    expect(mockFunc).toBeCalled();
   });
 });
 
@@ -69,18 +70,18 @@ describe("Test Counter", () => {
     const button = screen.getByTestId("testing-button");
     expect(counter).toBeInTheDocument();
     expect(button).toBeInTheDocument();
-    expect(counter).toHaveTextContent("counter:0");
+    expect(counter).toHaveTextContent("Counter:0");
   });
 
   it("Counter should update on clicking the button", () => {
     render(<App />);
     const counter = screen.getByTestId("counter");
     const button = screen.getByTestId("testing-button");
-    expect(counter).toHaveTextContent("counter:0");
+    expect(counter).toHaveTextContent("Counter:0");
     fireEvent.click(button);
-    expect(counter).toHaveTextContent("counter:1");
+    expect(counter).toHaveTextContent("Counter:1");
     fireEvent.click(button);
-    expect(counter).toHaveTextContent("counter:2");
+    expect(counter).toHaveTextContent("Counter:2");
   });
 
   // Decrementing the count
